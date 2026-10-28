@@ -1,0 +1,7 @@
+# system files
+.DS_Store
+
+# local tooling, not part of the website
+.claude/
+.agents/
+.impeccable/
