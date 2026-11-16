@@ -7,7 +7,11 @@
   $('#yr').textContent = new Date().getFullYear();
 
   // load choreography
-  const start = () => document.body.classList.add('loaded');
+  const start = () => {
+    const go = () => document.body.classList.add('loaded');
+    if (document.documentElement.classList.contains('intro-run')) addEventListener('introdone', go, { once: true });
+    else go();
+  };
   document.readyState === 'complete' ? start() : addEventListener('load', start);
   setTimeout(start, 1800);
 
@@ -63,19 +67,20 @@
       cancelAnimationFrame(raf);
       const id = ++run;
       fw.style.setProperty('--po', 1);
-      if (reduce) { set(1); return; }
+      fw.classList.remove('done');
+      if (reduce) { set(1); fw.classList.add('done'); return; }
       const t0 = performance.now(), dur = 4400;
       const tick = t => {
         if (id !== run) return;
         const k = Math.min(1, (t - t0) / dur);
         set(1 - Math.pow(1 - k, 1.6));
         if (k < 1) raf = requestAnimationFrame(tick);
-        else fw.style.setProperty('--po', 0);
+        else { fw.style.setProperty('--po', 0); fw.classList.add('done'); }
       };
       set(0);
       raf = requestAnimationFrame(tick);
     };
-    const reset = () => { run++; cancelAnimationFrame(raf); fw.style.setProperty('--po', 0); set(0); };
+    const reset = () => { run++; fw.classList.remove('done'); cancelAnimationFrame(raf); fw.style.setProperty('--po', 0); set(0); };
     new IntersectionObserver(es => es.forEach(e => e.isIntersecting ? play() : reset()), { threshold: 0.6 }).observe(fw);
   }
 
@@ -93,8 +98,78 @@
     requestAnimationFrame(tick);
   }
 
+  // skill icons: brand logos from simple-icons and devicon, line icons for the rest
+  (() => {
+    const si = s => `https://cdn.simpleicons.org/${s}`;
+    const dv = s => `https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/${s}.svg`;
+    const brand = {
+      'Python': si('python'), 'Embedded Python': si('python'), 'Kotlin': si('kotlin'), 'JavaScript': si('javascript'),
+      'TypeScript': si('typescript'), 'Node.js': si('nodedotjs'), 'MongoDB': si('mongodb'), 'PyTorch': si('pytorch'),
+      'TensorFlow': si('tensorflow'), 'scikit-learn': si('scikitlearn'), 'Java': dv('java/java-original'),
+      'C++': si('cplusplus'), 'PHP': si('php'), 'R': si('r'), 'Android': si('android'),
+      'AWS': dv('amazonwebservices/amazonwebservices-plain-wordmark'), 'Elasticsearch': si('elasticsearch'),
+      'MySQL': si('mysql'), 'Git': si('git'), 'GitLab': si('gitlab'), 'Jenkins': si('jenkins'), 'Linux': si('linux'),
+      'Jupyter': si('jupyter'), 'Pandas': si('pandas'), 'NumPy': si('numpy'), 'SQLite': si('sqlite'),
+      'Next.js': si('nextdotjs'), 'spaCy': si('spacy'), 'Raspberry Pi': si('raspberrypi'), 'Transformers': si('huggingface'),
+      'MERN': si('react'), 'macOS': si('apple')
+    };
+    const cpu = '<rect x="6" y="6" width="12" height="12" rx="2"/><path d="M9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4"/>';
+    const text = '<path d="M5 6h14M12 6v13M9 19h6"/>';
+    const line = {
+      'NLP': '<path d="M4 6h16M4 12h10M4 18h13"/>', 'NLTK': '<path d="M4 6h16M4 12h10M4 18h13"/>', 'Text generation': text,
+      'REST APIs': '<path d="M9 7 4 12l5 5M15 7l5 5-5 5"/>',
+      'API integrations': '<path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/>',
+      'Microservices': '<rect x="4" y="4" width="6" height="6" rx="1"/><rect x="14" y="4" width="6" height="6" rx="1"/><rect x="4" y="14" width="6" height="6" rx="1"/><rect x="14" y="14" width="6" height="6" rx="1"/>',
+      'Product strategy': '<circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/>',
+      'Explainability': '<path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/>',
+      'GPT-2': cpu, 'BERT': cpu, 'LSTM': cpu, 'Particle Photon': cpu,
+      'Fine-tuning': '<path d="M4 7h10M18 7h2M4 17h2M10 17h10"/><circle cx="16" cy="7" r="2"/><circle cx="8" cy="17" r="2"/>',
+      'Random Forests': '<path d="M12 21V11M12 11 7 6M12 11l5-5M12 16l-4-3M12 16l4-3"/>',
+      'Neural nets': '<circle cx="5" cy="6" r="2"/><circle cx="5" cy="18" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="6" r="2"/><circle cx="19" cy="18" r="2"/><path d="M7 6l3.5 5M7 18l3.5-5M13.5 11 17 7M13.5 13l3.5 4"/>',
+      'Imblearn': '<path d="M12 4v16M7 20h10M5 8h14M5 8l-2 6a3 3 0 0 0 4 0zM19 8l-2 6a3 3 0 0 0 4 0z"/>',
+      'Touch ID': '<path d="M12 11v3a6 6 0 0 1-1.5 4M8.5 13v-1a3.5 3.5 0 0 1 7 0v2.5M6 15.5V12a6 6 0 0 1 12 0v1M15.5 17.5c-.3 1-.7 2-1.3 2.8M9 5.7A6 6 0 0 1 12 5"/>',
+      'Encryption': '<rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/>',
+      'iPhone': '<rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M11 18.5h2"/>',
+      'Voice AI': '<rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21"/>',
+      'Android TV': '<rect x="3" y="5" width="18" height="12" rx="2"/><path d="M8 21h8"/>'
+    };
+    const make = name => {
+      if (brand[name]) {
+        const img = new Image();
+        img.className = 'ic';
+        img.alt = '';
+        img.loading = 'lazy';
+        img.src = brand[name];
+        img.addEventListener('error', () => { img.hidden = true; });
+        return img;
+      }
+      if (line[name]) {
+        const s = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+        s.setAttribute('viewBox', '0 0 24 24');
+        s.setAttribute('class', 'ic ic-line');
+        s.setAttribute('aria-hidden', 'true');
+        s.innerHTML = line[name];
+        return s;
+      }
+      return null;
+    };
+    $$('.chips span').forEach(el => {
+      const ic = make(el.textContent.trim());
+      if (ic) el.prepend(ic);
+    });
+    $$('.track span').forEach(el => {
+      const name = el.textContent.trim(), ic = make(name);
+      if (!ic) return;
+      const w = document.createElement('i');
+      w.className = 'tk';
+      w.append(ic, name);
+      el.textContent = '';
+      el.append(w);
+    });
+  })();
+
   // active section link
-  const secs = ['about', 'now', 'journey', 'work', 'craft'].map(id => $('#' + id));
+  const secs = ['about', 'now', 'journey', 'work', 'personal', 'craft'].map(id => $('#' + id));
   const so = new IntersectionObserver(es => es.forEach(e => {
     if (e.isIntersecting) $$('.links a').forEach(a => a.classList.toggle('on', a.getAttribute('href') === '#' + e.target.id));
   }), { rootMargin: '-45% 0px -50% 0px' });

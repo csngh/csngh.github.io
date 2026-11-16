@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Chetan Singh | Software Engineer and Product Lead</title>
 <meta name="description" content="Chetan Singh is a software engineer and product lead who builds commercial products from the ground up. CTO and Product Lead at Pinak AI Solutions, with a background in backend systems and applied NLP.">
-<meta name="theme-color" content="#f4efe5">
+<meta name="theme-color" content="#f6f8fd">
 <meta property="og:title" content="Chetan Singh | Software Engineer and Product Lead">
 <meta property="og:description" content="Building commercial products from zero. Backend systems, applied NLP, international logistics.">
 <meta property="og:type" content="website">
@@ -13,8 +13,12 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
-<script>document.documentElement.className='js'</script>
+<link rel="stylesheet" href="style.css?v=5">
+<link rel="stylesheet" href="motion.css?v=5">
+<script>
+document.documentElement.className='js';
+try{if(!matchMedia('(prefers-reduced-motion: reduce)').matches&&!sessionStorage.getItem('introSeen')){document.documentElement.classList.add('intro-run');setTimeout(function(){var d=document.documentElement;if(d.classList.contains('intro-run')){d.classList.remove('intro-run');dispatchEvent(new Event('introdone'))}},3000)}}catch(e){}
+</script>
 </head>
 <body>
 <div class="progress" aria-hidden="true"></div>
@@ -27,6 +31,7 @@
     <a href="#now">Now</a>
     <a href="#journey">Journey</a>
     <a href="#work">Work</a>
+    <a href="#personal">Projects</a>
     <a href="#craft">Craft</a>
     <a href="#contact" class="btn btn-sm magnetic">Contact</a>
   </nav>
@@ -118,10 +123,10 @@
     <h4 class="flow-label">How a shipment moves through the platform</h4>
     <div class="flow-wrap" id="flowWrap">
     <ol class="flow" aria-label="Shipment lifecycle">
-      <li><i>01</i><b>Dispatch</b><span>Shipment enters the system with the data it needs to travel.</span></li>
-      <li><i>02</i><b>Tracking</b><span>Status is captured and surfaced as the shipment moves.</span></li>
-      <li><i>03</i><b>Data flow</b><span>Information reaches every part of the platform that depends on it.</span></li>
-      <li><i>04</i><b>Delivery</b><span>The loop closes with a clean, end-to-end record.</span></li>
+      <li><i>01</i><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 8 12 3 3 8v8l9 5 9-5z"/><path d="M3 8l9 5 9-5M12 13v8"/></svg><b>Dispatch</b><span>Shipment enters the system with the data it needs to travel.</span></li>
+      <li><i>02</i><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-6.5-5.7-6.5-11a6.5 6.5 0 0 1 13 0c0 5.3-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.3"/></svg><b>Tracking</b><span>Status is captured and surfaced as the shipment moves.</span></li>
+      <li><i>03</i><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h11M11 3l4 4-4 4M20 17H9M13 13l-4 4 4 4"/></svg><b>Data flow</b><span>Information reaches every part of the platform that depends on it.</span></li>
+      <li><i>04</i><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m8 12.3 2.8 2.8L16 9.5"/></svg><b>Delivery</b><span>The loop closes with a clean, end-to-end record.</span></li>
     </ol>
     <div class="flow-plane" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 12h16M10 12L6 5h2.5l6 7-6 7H6zM4 12L2.5 9H5l1.8 3-1.8 3H2.5z"/></svg></div>
     </div>
@@ -172,7 +177,7 @@
     <article class="t-item reveal">
       <time>2025 <i>to 2026</i></time>
       <div class="t-body">
-        <h3>Founder, financial strategy</h3>
+        <h3>Founder, Financial Strategist</h3>
         <p class="org">Stealth fintech venture &middot; Berlin, remote</p>
         <p>Started an early-stage fintech company and worked on its financial strategy and first steps in business development.</p>
       </div>
@@ -262,9 +267,50 @@
   </div>
 </section>
 
+<!-- PERSONAL PROJECTS -->
+<section class="sec work" id="personal">
+  <div class="sec-head reveal"><span class="idx">05</span><h2>Personal projects</h2></div>
+  <div class="cards">
+    <article class="card big reveal">
+      <p class="tag">macOS and iPhone &middot; In development</p>
+      <h3>Project Cassandra</h3>
+      <p>A voice-first AI companion that lives in the Mac menu bar. Say her name and talk: she remembers what you tell her, finds what you need and works your Mac, while everything she knows stays as files you own.</p>
+      <div class="chips"><span>macOS</span><span>iPhone</span><span>Voice AI</span></div>
+      <a class="more" href="https://github.com/csngh/project-cassandra" target="_blank" rel="noopener">View project <svg viewBox="0 0 20 20" width="14" height="14" aria-hidden="true"><path d="M5 15 15 5M7 5h8v8" fill="none" stroke="currentColor" stroke-width="1.8"/></svg></a>
+    </article>
+    <article class="card big reveal" style="--d:0.08s">
+      <p class="tag">macOS &middot; In development</p>
+      <h3>The MacGuard</h3>
+      <p>A menu bar app that locks apps, files, folders and websites on a Mac behind Touch ID or a password. Protected items are encrypted on the device, with no account and no server.</p>
+      <div class="chips"><span>macOS</span><span>Touch ID</span><span>Encryption</span></div>
+      <a class="more" href="https://github.com/csngh/themacguard-app" target="_blank" rel="noopener">View project <svg viewBox="0 0 20 20" width="14" height="14" aria-hidden="true"><path d="M5 15 15 5M7 5h8v8" fill="none" stroke="currentColor" stroke-width="1.8"/></svg></a>
+    </article>
+    <article class="card big reveal">
+      <p class="tag">Android, iPhone and TV &middot; 2026</p>
+      <h3>Gallery DL App</h3>
+      <p>A native download manager for gallery-dl on Android, Android TV and iPhone. The tool runs inside the app, so there is no server or account. Paste a link, press Start, and browse the result with live video previews.</p>
+      <div class="chips"><span>Kotlin</span><span>Swift</span><span>Embedded Python</span></div>
+      <a class="more" href="https://github.com/csngh/gallery-dl-app" target="_blank" rel="noopener">View repository <svg viewBox="0 0 20 20" width="14" height="14" aria-hidden="true"><path d="M5 15 15 5M7 5h8v8" fill="none" stroke="currentColor" stroke-width="1.8"/></svg></a>
+    </article>
+    <article class="card big reveal" style="--d:0.08s">
+      <p class="tag">Android TV &middot; 2026</p>
+      <h3>Bliss Launcher</h3>
+      <p>A calm home screen for projectors and Android TV, made to be used from the couch with nothing but a remote. Light enough to run on 1 GB of RAM.</p>
+      <div class="chips"><span>Kotlin</span><span>Android TV</span></div>
+      <a class="more" href="https://github.com/csngh/bliss-tv-launcher" target="_blank" rel="noopener">View repository <svg viewBox="0 0 20 20" width="14" height="14" aria-hidden="true"><path d="M5 15 15 5M7 5h8v8" fill="none" stroke="currentColor" stroke-width="1.8"/></svg></a>
+    </article>
+    <article class="card wide reveal">
+      <p class="tag">GitHub</p>
+      <h3>Explore more on my GitHub</h3>
+      <p>Smaller experiments, machine learning notebooks and older Android work live in the rest of my repositories.</p>
+      <a class="more" href="https://github.com/csngh?tab=repositories" target="_blank" rel="noopener">All repositories <svg viewBox="0 0 20 20" width="14" height="14" aria-hidden="true"><path d="M5 15 15 5M7 5h8v8" fill="none" stroke="currentColor" stroke-width="1.8"/></svg></a>
+    </article>
+  </div>
+</section>
+
 <!-- CRAFT -->
 <section class="sec craft" id="craft">
-  <div class="sec-head reveal"><span class="idx">05</span><h2>Craft and toolkit</h2></div>
+  <div class="sec-head reveal"><span class="idx">06</span><h2>Craft and toolkit</h2></div>
   <div class="skills">
     <div class="skill reveal"><h4>Backend and systems</h4><div class="chips"><span>Node.js</span><span>MERN</span><span>REST APIs</span><span>Microservices</span><span>API integrations</span><span>AWS</span></div></div>
     <div class="skill reveal" style="--d:.06s"><h4>Languages</h4><div class="chips"><span>Python</span><span>JavaScript</span><span>Java</span><span>C++</span><span>R</span><span>PHP</span></div></div>
@@ -296,7 +342,7 @@
 
 <!-- EDUCATION / LANGUAGES / BEYOND -->
 <section class="sec edu" id="foundation">
-  <div class="sec-head reveal"><span class="idx">06</span><h2>Foundations</h2></div>
+  <div class="sec-head reveal"><span class="idx">07</span><h2>Foundations</h2></div>
   <div class="trio">
     <div class="panel reveal">
       <h4>Education</h4>
@@ -340,6 +386,7 @@
   <a href="#top">Back to top &uarr;</a>
 </footer>
 
-<script src="main.js"></script>
+<script src="motion.js?v=5"></script>
+<script src="main.js?v=5"></script>
 </body>
 </html>
