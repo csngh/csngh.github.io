@@ -15,7 +15,7 @@
     const t0 = performance.now();
     const step = t => {
       const k = Math.min(1, (t - t0) / dur), n = Math.floor(k * final.length);
-      el.textContent = final.slice(0, n) + [...final.slice(n)].map(c => c === ' ' ? ' ' : set[Math.random() * set.length | 0]).join('');
+      el.textContent = final.slice(0, n) + [...final.slice(n)].map(c => /[a-z0-9]/i.test(c) ? set[Math.random() * set.length | 0] : c).join('');
       if (k < 1) requestAnimationFrame(step); else el.textContent = final;
     };
     requestAnimationFrame(step);
@@ -233,6 +233,19 @@
     requestAnimationFrame(frame);
   };
   requestAnimationFrame(frame);
+
+  // the email scrambles on hover; @ and dots hold still so it stays readable
+  const mail = $('.mail');
+  if (mail) {
+    const addr = mail.textContent;
+    let mailBusy = false;
+    mail.addEventListener('pointerenter', () => {
+      if (mailBusy) return;
+      mailBusy = true;
+      scramble(mail, addr, 700, 'abcdefghijklmnopqrstuvwxyz0123456789');
+      setTimeout(() => { mailBusy = false; }, 750);
+    });
+  }
 
   // nav links scramble on hover
   $$('.links a:not(.btn)').forEach(a => {

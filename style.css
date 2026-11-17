@@ -410,3 +410,20 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;bac
 #personal .card:focus-within{outline:2px solid var(--accent2);outline-offset:3px}
 #personal .card .more:focus-visible{outline:none}
 #personal .card:hover .more svg{transform:translate(3px,-3px)}
+
+/* phone layout fixes */
+@media(max-width:760px){
+  .sec-head{flex-direction:column;align-items:flex-start;gap:10px}
+  .flow li{padding-left:0}
+  .flow li::before,.flow li.lit::before{display:none}
+  .flow li{display:grid;grid-template-columns:44px 1fr;grid-template-areas:"ico num" "ico title" ". desc";column-gap:14px;align-items:center}
+  .flow li .ico{grid-area:ico;margin:0;align-self:center}
+  .flow li.lit .ico{transform:scale(1.06)}
+  .flow li i{grid-area:num;align-self:end;margin:0 0 4px}
+  .flow li b{grid-area:title;align-self:start;margin:0}
+  .flow li span{grid-area:desc;margin-top:8px}
+  .t-item.in::after{left:5.5px;top:12px}
+  .pops{display:none}
+  .hero-art .c2{top:-3%;right:2%}
+  .hero-art .c1{left:2%;bottom:5%}
+}
